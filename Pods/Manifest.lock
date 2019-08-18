@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.5.1)
+  - CryptoSwift (1.0.0)
+  - Kingfisher (5.3.1)
+  - SwiftOverlays (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5.0)
+  - CryptoSwift
+  - Kingfisher
+  - SwiftOverlays (~> 5.0.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - CryptoSwift
+    - Kingfisher
+    - SwiftOverlays
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
+
+PODFILE CHECKSUM: 5dfbfdafa3992b93524601a36891d685c3e92198
+
+COCOAPODS: 1.6.1
