@@ -10,10 +10,14 @@ import UIKit
 
 class CharacterDetailsTableViewFooter: UITableViewHeaderFooterView {
 
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    static var nib: UINib {
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
    
 }

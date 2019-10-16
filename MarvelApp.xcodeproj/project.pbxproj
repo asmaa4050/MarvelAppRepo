@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2FB30F3CCD500C7DECC946A9 /* Pods_MarvelAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ACC3107217B44A9E989B98 /* Pods_MarvelAppUITests.framework */; };
+		720118882312BC710093FC47 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720118862312BC710093FC47 /* ImageViewCell.swift */; };
+		720118892312BC710093FC47 /* ImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 720118872312BC710093FC47 /* ImageViewCell.xib */; };
 		72021B2722BBBC4B00C0BFF2 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72021B2622BBBC4B00C0BFF2 /* BasePresenter.swift */; };
 		72021B2922BBBC6F00C0BFF2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72021B2822BBBC6F00C0BFF2 /* BaseViewController.swift */; };
 		7202709A22DB45D600E2BFDD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202709922DB45D600E2BFDD /* UIViewController+Extension.swift */; };
@@ -42,6 +44,11 @@
 		72A5D1FF22B7C72900EDDE46 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A5D1FD22B7C72900EDDE46 /* ImageTableViewCell.xib */; };
 		72A5D20222B929B400EDDE46 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A5D20122B929B400EDDE46 /* UITableView+Extensions.swift */; };
 		72BC219D22D7C4E8008A7F73 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BC219C22D7C4E8008A7F73 /* CharacterDetailsViewController.swift */; };
+		72CB97C8230C0277003C5E8C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CB97C7230C0277003C5E8C /* Color+Extension.swift */; };
+		72CB97CD230C1B8E003C5E8C /* ImageSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CB97CB230C1B8E003C5E8C /* ImageSliderViewController.swift */; };
+		72CB97D0230C1C09003C5E8C /* ImageSliderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CB97CF230C1C09003C5E8C /* ImageSliderPresenter.swift */; };
+		72D6DCA4230AA18200DE389D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6DCA2230AA18200DE389D /* SearchTableViewCell.swift */; };
+		72D6DCA5230AA18200DE389D /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D6DCA3230AA18200DE389D /* SearchTableViewCell.xib */; };
 		A809CC5C8EB3106835215AEE /* Pods_MarvelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF6F69C8CAA7592F57BCAB4 /* Pods_MarvelApp.framework */; };
 		B1AD6BC23A018FA6A2223125 /* Pods_MarvelAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8608DD99F61E623C52B6CE /* Pods_MarvelAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +76,8 @@
 		28F98E2E2FE02A8F2ACBAF85 /* Pods-MarvelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelApp.debug.xcconfig"; path = "Target Support Files/Pods-MarvelApp/Pods-MarvelApp.debug.xcconfig"; sourceTree = "<group>"; };
 		37ACC3107217B44A9E989B98 /* Pods_MarvelAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		466F1DFF6C73E02A0488557F /* Pods-MarvelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MarvelAppTests/Pods-MarvelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		720118862312BC710093FC47 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		720118872312BC710093FC47 /* ImageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewCell.xib; sourceTree = "<group>"; };
 		72021B2622BBBC4B00C0BFF2 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		72021B2822BBBC6F00C0BFF2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7202709922DB45D600E2BFDD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -109,6 +118,11 @@
 		72A5D1FD22B7C72900EDDE46 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
 		72A5D20122B929B400EDDE46 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		72BC219C22D7C4E8008A7F73 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
+		72CB97C7230C0277003C5E8C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		72CB97CB230C1B8E003C5E8C /* ImageSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderViewController.swift; sourceTree = "<group>"; };
+		72CB97CF230C1C09003C5E8C /* ImageSliderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderPresenter.swift; sourceTree = "<group>"; };
+		72D6DCA2230AA18200DE389D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		72D6DCA3230AA18200DE389D /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		8B8608DD99F61E623C52B6CE /* Pods_MarvelAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B648438AA1812ECDC41D517C /* Pods-MarvelAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MarvelAppUITests/Pods-MarvelAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B837CB14D4FB4F8BC467766E /* Pods-MarvelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAppTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelAppTests/Pods-MarvelAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,9 +192,12 @@
 		72021B2C22BBD1E000C0BFF2 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				72CB97D1230C1D71003C5E8C /* CustomViews */,
 				7208168C23097DF300A7860C /* CustomeCells */,
 				72BC219C22D7C4E8008A7F73 /* CharacterDetailsViewController.swift */,
 				7202709B22DB594E00E2BFDD /* CharacterDetailsPresenter.swift */,
+				72CB97CB230C1B8E003C5E8C /* ImageSliderViewController.swift */,
+				72CB97CF230C1C09003C5E8C /* ImageSliderPresenter.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -220,10 +237,20 @@
 		720816A52309856900A7860C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				720816AA23099D8700A7860C /* CustomCells */,
 				720816A62309867C00A7860C /* SearchViewController.swift */,
 				720816A8230986B700A7860C /* SearchPresenter.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		720816AA23099D8700A7860C /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				72D6DCA2230AA18200DE389D /* SearchTableViewCell.swift */,
+				72D6DCA3230AA18200DE389D /* SearchTableViewCell.xib */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		722F055D22B65DE800293DFB = {
@@ -316,8 +343,18 @@
 				720821D122D49EC90029A8AA /* UIImageView+Extension.swift */,
 				725866C322D74B180007520C /* String+Extension.swift */,
 				7202709922DB45D600E2BFDD /* UIViewController+Extension.swift */,
+				72CB97C7230C0277003C5E8C /* Color+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		72CB97D1230C1D71003C5E8C /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				720118862312BC710093FC47 /* ImageViewCell.swift */,
+				720118872312BC710093FC47 /* ImageViewCell.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		72EF82EE22BA682000865C93 /* Helpers */ = {
@@ -454,11 +491,13 @@
 				7208168E23097DF300A7860C /* CharacterHeaderTableViewCell.xib in Resources */,
 				720816A32309816C00A7860C /* FlickerTableViewCell.xib in Resources */,
 				7208169723097F5B00A7860C /* CharacterDetailsTableViewFooter.xib in Resources */,
+				720118892312BC710093FC47 /* ImageViewCell.xib in Resources */,
 				72A5D1FF22B7C72900EDDE46 /* ImageTableViewCell.xib in Resources */,
 				722F057122B65DE800293DFB /* Assets.xcassets in Resources */,
 				7208169623097F5B00A7860C /* CharacterDetailsTableViewCell.xib in Resources */,
 				7208169823097F5B00A7860C /* ComicCollectionViewCell.xib in Resources */,
 				722F056F22B65DE800293DFB /* Main.storyboard in Resources */,
+				72D6DCA5230AA18200DE389D /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +573,9 @@
 				"${PODS_ROOT}/Target Support Files/Pods-MarvelApp/Pods-MarvelApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ScalingCarousel/ScalingCarousel.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOverlays/SwiftOverlays.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -543,7 +584,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScalingCarousel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverlays.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,7 +624,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A5D20222B929B400EDDE46 /* UITableView+Extensions.swift in Sources */,
+				72CB97C8230C0277003C5E8C /* Color+Extension.swift in Sources */,
 				7208169F2309806500A7860C /* CharacterModel.swift in Sources */,
+				720118882312BC710093FC47 /* ImageViewCell.swift in Sources */,
 				720816A9230986B700A7860C /* SearchPresenter.swift in Sources */,
 				7284E17F22C178AB00102402 /* NetworkClient.swift in Sources */,
 				72021B2722BBBC4B00C0BFF2 /* BasePresenter.swift in Sources */,
@@ -601,8 +646,11 @@
 				7284E18022C178AB00102402 /* APIRouter.swift in Sources */,
 				7208169C23097F5B00A7860C /* CharacterDetailsTableViewCell.swift in Sources */,
 				72021B2922BBBC6F00C0BFF2 /* BaseViewController.swift in Sources */,
+				72D6DCA4230AA18200DE389D /* SearchTableViewCell.swift in Sources */,
 				722F05A622B65E8300293DFB /* Utils.swift in Sources */,
+				72CB97D0230C1C09003C5E8C /* ImageSliderPresenter.swift in Sources */,
 				7208169B23097F5B00A7860C /* CharacterHeaderTableViewCell.swift in Sources */,
+				72CB97CD230C1B8E003C5E8C /* ImageSliderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

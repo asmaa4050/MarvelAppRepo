@@ -20,7 +20,7 @@ class CharacterDetailsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-        // H comicsCollectionView.collectionViewLayout.collectionViewContentSize
+       
        
     }
     
@@ -38,10 +38,7 @@ class CharacterDetailsTableViewCell: UITableViewCell {
         detailsCollectionView.tag = row
         detailsCollectionView.reloadData()
        
-       /* let height = comicsCollectionView.collectionViewLayout.collectionViewContentSize.height
-        collectionViewHightConstraint.constant = height
-        setNeedsLayout()
-        layoutIfNeeded()*/
+     
        
     }
 }

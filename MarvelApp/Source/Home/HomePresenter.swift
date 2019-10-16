@@ -32,22 +32,10 @@ class HomePresenter : BasePresenter {
                
             }) { [unowned self]  error in
                 print(error)
-                 self.dismissLodingIndicator()
+                self.dismissLodingIndicator()
+                self.handelGeneraicError(error : error)
+                
             }
     }
     
-    func searchCharachter(withName searchText:String){
-
-        NetworkClient.searchCharachter(searchText : searchText,onSuccess: { (model) in
-                self.responseModel = model
-                if let charList = self.responseModel?.data.results{
-                    DispatchQueue.main.async {
-                        self.controller?.updateUiWithSearchModel(charList : charList )
-                    }
-                }
-                
-        }) { [unowned self]  error in
-            print("")
-        }
-    }
 }

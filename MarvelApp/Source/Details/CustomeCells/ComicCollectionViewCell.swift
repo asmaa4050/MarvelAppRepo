@@ -25,7 +25,7 @@ class ComicCollectionViewCell: UICollectionViewCell {
         name.minimumScaleFactor = 0.5
         name.font = UIFont.systemFont(ofSize: 15.0)
         name.numberOfLines = 4
-        comicImage.contentMode = .scaleAspectFit
+        comicImage.contentMode = .scaleAspectFill
         
     
 

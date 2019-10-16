@@ -18,33 +18,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="244.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-VL-D3H">
+                        <rect key="frame" x="16" y="11" width="278" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YOy-HF-itk">
-                        <rect key="frame" x="0.0" y="44.5" width="320" height="200"/>
+                        <rect key="frame" x="10" y="44.5" width="310" height="200"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="z4u-Ws-rTX"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9Aw-lM-XAE">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Aw-lM-XAE">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-VL-D3H">
-                        <rect key="frame" x="16" y="11" width="278" height="28.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="YOy-HF-itk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cb7-PD-PNA"/>
+                    <constraint firstItem="YOy-HF-itk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cb7-PD-PNA"/>
                     <constraint firstItem="ZPR-VL-D3H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ebk-LL-ATU"/>
-                    <constraint firstItem="YOy-HF-itk" firstAttribute="top" secondItem="ZPR-VL-D3H" secondAttribute="bottom" constant="5" id="edF-47-K3W"/>
                     <constraint firstItem="ZPR-VL-D3H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="esS-y6-PPW"/>
-                    <constraint firstItem="YOy-HF-itk" firstAttribute="top" secondItem="ZPR-VL-D3H" secondAttribute="bottom" constant="5" id="fsU-Oc-Kvs"/>
+                    <constraint firstItem="YOy-HF-itk" firstAttribute="top" secondItem="ZPR-VL-D3H" secondAttribute="bottom" id="fsU-Oc-Kvs"/>
                     <constraint firstAttribute="bottom" secondItem="YOy-HF-itk" secondAttribute="bottom" id="kZ8-HK-0LY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ZPR-VL-D3H" secondAttribute="trailing" constant="10" id="lXA-r9-EYN"/>
                     <constraint firstAttribute="trailing" secondItem="YOy-HF-itk" secondAttribute="trailing" id="rp6-Gw-FJb"/>

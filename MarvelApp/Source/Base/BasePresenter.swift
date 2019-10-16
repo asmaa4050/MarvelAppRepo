@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import SwiftOverlays
 class BasePresenter {
-    let viewController : UIViewController?
+    let viewController : BaseViewController?
     
-    init(viewController : UIViewController) {
+    init(viewController : BaseViewController) {
         self.viewController = viewController
     }
     
@@ -22,5 +22,11 @@ class BasePresenter {
     }
     func dismissLodingIndicator(){
         self.viewController!.removeAllOverlays()
+    }
+    
+    func handelGeneraicError(error : Error ){
+        viewController?.handelGenaricError(error: error)
+       
+        
     }
 }

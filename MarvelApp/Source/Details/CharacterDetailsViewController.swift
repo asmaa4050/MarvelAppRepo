@@ -8,9 +8,12 @@
 
 import UIKit
 
-class CharacterDetailsViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
+class CharacterDetailsViewController: BaseViewController , UITableViewDelegate , UITableViewDataSource{
     
     @IBOutlet var CharDetailsTabelView: UITableView!
+    @IBOutlet var contentView: UIView!
+    
+    @IBOutlet var scrollView: UIScrollView!
     fileprivate var character : CharDetails?
     fileprivate var charDetailsList : [ChardetailsUiModel] = []
     fileprivate var presenter : CharacterDetailsPresenter?
@@ -26,9 +29,11 @@ class CharacterDetailsViewController: UIViewController , UITableViewDelegate , U
         adjustTableHeaderHight()
         setupPresenter ()
        
-      
     }
-   
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     // MARK: setupPresenter
     func setupPresenter (){
         presenter = CharacterDetailsPresenter(controller: self)
@@ -41,14 +46,22 @@ class CharacterDetailsViewController: UIViewController , UITableViewDelegate , U
         CharDetailsTabelView.delegate = self
         CharDetailsTabelView.dataSource = self
         CharDetailsTabelView.separatorStyle = UITableViewCell.SeparatorStyle.none
-       CharDetailsTabelView.registerNib(cell: CharacterDetailsTableViewCell.self)
-        
+        CharDetailsTabelView.registerNib(cell: CharacterDetailsTableViewCell.self)
+        CharDetailsTabelView.estimatedSectionHeaderHeight = 200
+        CharDetailsTabelView.sectionHeaderHeight = UITableView.automaticDimension
+        CharDetailsTabelView.estimatedSectionFooterHeight = 200
+        CharDetailsTabelView.sectionFooterHeight = UITableView.automaticDimension
        CharDetailsTabelView.register(
             CharacterHeaderTableViewCell.nib,
             forHeaderFooterViewReuseIdentifier:
             "HeaderCell"
         )
         
+        CharDetailsTabelView.register(
+            CharacterDetailsTableViewFooter.nib,
+            forHeaderFooterViewReuseIdentifier:
+            "footerCell"
+        )
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,7 +72,7 @@ class CharacterDetailsViewController: UIViewController , UITableViewDelegate , U
         let  cell = CharDetailsTabelView.dequeueCell() as CharacterDetailsTableViewCell
            cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
             cell.comicsLabel.text = headersLabelsDic [indexPath.row]
-    
+           cell.selectionStyle = .none
           return cell
     }
     
@@ -70,25 +83,32 @@ class CharacterDetailsViewController: UIViewController , UITableViewDelegate , U
     
  
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
         let  headerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell") as! CharacterHeaderTableViewCell
+    
              headerCell.configureCell(character: character!)
+    
         return headerCell
     }
     
- 
-   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    let view =  CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell") as! UIView
-        let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        return size.height
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let  footerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "footerCell") as! CharacterDetailsTableViewFooter
+     
+        
+        return footerCell
+    }
     
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 //
     
     fileprivate func setTableContentInset(){
-        if let rect = self.navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            self.CharDetailsTabelView.contentInset = UIEdgeInsets( top: -y , left: 0, bottom: 20, right: 0)
-        }
+            let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
+            let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
+            self.scrollView.contentInset = UIEdgeInsets( top: -(barHeight + statusBarHeight) , left: 0, bottom: 20, right: 0)
+        
     }
     fileprivate func adjustTableHeaderHight() {
         CharDetailsTabelView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: CharDetailsTabelView.frame.width, height: view.frame.height * 0.5)
@@ -142,6 +162,17 @@ extension CharacterDetailsViewController : UICollectionViewDelegate , UICollecti
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        charDetailsList = charDetailsDic[collectionView.tag]!
+        
+        if let imageSliderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageSliderViewController") as? ImageSliderViewController {
+            imageSliderViewController.setPhotosList(photosList: charDetailsList)
+            navigationItem.backBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.pushViewController(imageSliderViewController, animated: true)
+        }
+    }
+    
+    
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       let itemsPerRow:CGFloat = 3.5
         let hardCodedPadding:CGFloat = 5
@@ -149,6 +180,7 @@ extension CharacterDetailsViewController : UICollectionViewDelegate , UICollecti
         let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    
     
 }
 

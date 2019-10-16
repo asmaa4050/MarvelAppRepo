@@ -9,6 +9,9 @@ target 'MarvelApp' do
  pod 'CryptoSwift'
  pod 'Kingfisher'
  pod 'SwiftOverlays', '~> 5.0.1'
+ pod 'ScalingCarousel'
+pod 'JGProgressHUD'
+
 
   target 'MarvelAppTests' do
     inherit! :search_paths

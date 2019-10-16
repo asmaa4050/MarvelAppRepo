@@ -18,7 +18,6 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     var charSearchList : [CharDetails]?
     let charLimit = 20
     var charOffest = 0
-     var isSearh = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +42,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
         self.marvelTableView.delegate = self
         self.marvelTableView.dataSource = self
         marvelTableView.registerNib(cell: ImageTableViewCell.self)
+       
     }
     
     // MARK: navigationBar
@@ -54,7 +54,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     
     func setupDefaultNavigationItems(){
         
-        let SearchBarButton = UIBarButtonItem(image: UIImage(named: "icn-nav-search" ) , style: .done, target: self, action: #selector(showSearchBar))
+        let SearchBarButton = UIBarButtonItem(image: UIImage(named: "icn-nav-search" ) , style: .done, target: self, action: #selector(showSearchViewController))
         self.navigationItem.rightBarButtonItem = SearchBarButton
         let logo = UIImage(named: "icn-nav-marvel.png")
         let imageView = UIImageView(image:logo)
@@ -62,68 +62,24 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     }
     
     // MARK: searchBar
-    @objc func showSearchBar(){
-        self.navigationItem.titleView = nil
-        self.navigationItem.rightBarButtonItem = nil
-         navigationController?.navigationBar.tintColor = UIColor.red
-        let searchBar = UISearchBar.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: UIScreen.main.bounds.width, height: (navigationController?.navigationBar.frame.height)!)))
-        searchBar.showsCancelButton = true
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
-    
+    @objc func showSearchViewController(){
+        
+        performSegue(withIdentifier: "searchSegue", sender: self)
     }
   
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text{
-            if validateEmptyText(text: searchText){
-                isSearh = true
-                presenter?.searchCharachter(withName: searchText)
-            }
-            else{
-           // H        showWarrningMessage()
-            }
-        }
-        
-      
-    }
 
-    func validateEmptyText(text : String) -> Bool{
-        if text != "" {
-            return true
-        }
-        return false
-    }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        setupDefaultNavigationItems()
-        isSearh = false
-        marvelTableView.reloadData()
-    }
-    
     // MARK: tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (isSearh){
-             return charSearchList?.count ?? 0
-        }
-        else {
-             return charList?.count ?? 0
-        }
+       
+         return charList?.count ?? 0
+    
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = marvelTableView.dequeueCell() as ImageTableViewCell
         
-        var characterList : [CharDetails]
-        if(isSearh){
-            characterList = charSearchList ?? []
-        }
-        else{
-            characterList = charList ?? []
-        }
-        
-        cell.configureCell(character : characterList[indexPath.row] )
+        cell.configureCell(character : charList![indexPath.row] )
         
         return cell
     }
@@ -136,12 +92,8 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if(isSearh){
-            navigateToCharacterDetailsViewController (character : (charSearchList?[indexPath.row])!)
-        }
-        else {
             navigateToCharacterDetailsViewController (character : (charList?[indexPath.row])!)
-        }
+        
         }
        
     
@@ -169,9 +121,11 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     func  navigateToCharacterDetailsViewController (character : CharDetails){
         
         if let charDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CharacterDetailsViewController") as? CharacterDetailsViewController {
+             navigationItem.backBarButtonItem?.tintColor = UIColor.white
             charDetailsViewController.setCharacterObj(character: character )
             if let navigator = navigationController {
                 navigator.pushViewController(charDetailsViewController, animated: true)
+               
             }
         }
     }

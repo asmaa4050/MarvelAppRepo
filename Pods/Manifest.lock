@@ -1,28 +1,36 @@
 PODS:
   - Alamofire (4.5.1)
   - CryptoSwift (1.0.0)
+  - JGProgressHUD (2.0.3)
   - Kingfisher (5.3.1)
+  - ScalingCarousel (2.4.1)
   - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5.0)
   - CryptoSwift
+  - JGProgressHUD
   - Kingfisher
+  - ScalingCarousel
   - SwiftOverlays (~> 5.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CryptoSwift
+    - JGProgressHUD
     - Kingfisher
+    - ScalingCarousel
     - SwiftOverlays
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  ScalingCarousel: 2f8d7d7dc02a4aff33ad0ca4148f9b27b2c8f91c
   SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: 5dfbfdafa3992b93524601a36891d685c3e92198
+PODFILE CHECKSUM: 8a3714e9345df5a0d88f17d3df6cf4e92208484a
 
 COCOAPODS: 1.6.1
