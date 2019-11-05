@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 class CharacterDetailsPresenter :BasePresenter{
     weak var controller : CharacterDetailsViewController?
     fileprivate var responseModel : ResponseModel?

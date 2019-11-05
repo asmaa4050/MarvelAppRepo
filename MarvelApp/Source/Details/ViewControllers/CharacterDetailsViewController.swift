@@ -12,7 +12,6 @@ class CharacterDetailsViewController: BaseViewController , UITableViewDelegate ,
     
     @IBOutlet var CharDetailsTabelView: UITableView!
     @IBOutlet var contentView: UIView!
-    
     @IBOutlet var scrollView: UIScrollView!
     fileprivate var character : CharDetails?
     fileprivate var charDetailsList : [ChardetailsUiModel] = []
