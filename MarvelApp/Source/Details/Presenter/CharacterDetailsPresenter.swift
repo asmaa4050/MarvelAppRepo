@@ -27,7 +27,7 @@ class CharacterDetailsPresenter :CharDetailsPresenterProtocol{
        fetchCharacterDetils(charId: charId, detailsType: "stories" )
         dispatchGroup.notify(queue: .main){
             self.controller?.fetchingDataSuccess()
-            self.controller?.showIndicator()
+            self.controller?.dismissIndicator()
         }
     }
     
