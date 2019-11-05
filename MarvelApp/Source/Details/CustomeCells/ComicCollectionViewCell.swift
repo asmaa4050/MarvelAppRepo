@@ -27,7 +27,6 @@ class ComicCollectionViewCell: UICollectionViewCell {
         name.numberOfLines = 4
         comicImage.contentMode = .scaleAspectFill
         
-    
 
     }
     func configureCell(imagePath : String, name : String){

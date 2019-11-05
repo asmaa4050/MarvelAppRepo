@@ -7,3 +7,10 @@
 //
 
 import Foundation
+class HomeInteractor : HomeInteractorInputProtocol {
+    var presenter: HomePresenterProtocol?
+    
+    func getCharachters(limit: Int, offest: Int) {
+    
+}
+}

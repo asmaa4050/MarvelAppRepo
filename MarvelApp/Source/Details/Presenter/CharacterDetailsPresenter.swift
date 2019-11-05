@@ -7,30 +7,30 @@
 //
 
 import Foundation
-class CharacterDetailsPresenter :BasePresenter{
-    weak var controller : CharacterDetailsViewController?
+class CharacterDetailsPresenter :CharDetailsPresenterProtocol{
+  
+   weak  var controller: CharacterDetailsViewProtocol?
     fileprivate var responseModel : ResponseModel?
     fileprivate var dispatchGroup = DispatchGroup ()
     var charDetailsDic = [Int: [ChardetailsUiModel]]()
     fileprivate var headerLabelDic = [Int : String]()
-    
+    fileprivate var charDetailsList : [ChardetailsUiModel] = []
 
-    init?(controller : CharacterDetailsViewController) {
-        super.init(viewController: controller)
-        
-        self.controller = controller
+    init?(controller : CharacterDetailsViewProtocol) {
+           self.controller = controller
     }
     func fetchCharacterDeatils(charId : Int)  {
-        showLodingIndicator()
+       controller?.showIndicator()
        fetchCharacterDetils(charId: charId, detailsType: "comics")
         fetchCharacterDetils(charId: charId, detailsType: "events")
        fetchCharacterDetils(charId: charId, detailsType: "series")
        fetchCharacterDetils(charId: charId, detailsType: "stories" )
         dispatchGroup.notify(queue: .main){
-            self.controller?.updateUiWithModel(charDetailsDic : self.charDetailsDic , headerLabelDic : self.headerLabelDic )
-            self.dismissLodingIndicator()
+            self.controller?.fetchingDataSuccess()
+            self.controller?.showIndicator()
         }
     }
+    
     
     func fetchCharacterDetils(charId : Int, detailsType : String) {
         
@@ -46,6 +46,33 @@ class CharacterDetailsPresenter :BasePresenter{
             self.dispatchGroup.leave()
         }
     }
+    
+    func getCharDetailsDicCount() -> Int {
+        return charDetailsDic.count
+    }
+    func getCollectionviewItemsCount(collectionViewTag: Int) -> Int {
+        if let myarr = charDetailsDic[collectionViewTag]{
+            return myarr.count
+        }
+        else {
+            return 0
+        }
+        
+    }
+    func configureCollectionViewCell(cell: ComicCollectionViewCell, tag: Int , indexPath :Int) {
+        charDetailsList = getCharDetailsList(tag: tag)
+        cell.configureCell(imagePath: (charDetailsList[indexPath].thumbnail.getImagePath()), name: charDetailsList[indexPath].title)
+    }
+    
+    func getCharDetailsList (tag : Int) -> [ChardetailsUiModel] {
+        return  charDetailsDic[tag]!
+    }
+    
+    func configureHeaderLabel(cell: CharacterDetailsTableViewCell, indexPath: Int) {
+        cell.comicsLabel.text =  headerLabelDic[indexPath]
+    }
+    
+
     func mapRsponseModelToUi(charList : [CharDetails] , detailsType : String){
         
         if (charList.count != 0 ){

@@ -9,7 +9,9 @@
 import UIKit
 import Kingfisher
 
-class ImageTableViewCell: UITableViewCell {
+class ImageTableViewCell: UITableViewCell , HomeCellViewProtocol{
+    
+    
     
     @IBOutlet weak var marvelImageView: UIImageView!
     
@@ -32,15 +34,9 @@ class ImageTableViewCell: UITableViewCell {
     
     func configureCell (character : CharDetails){
          titleLabel.text = character.name
-        if let imageFullPath = character.thumbnail?.getImagePath(){
-        guard let url = URL(string: imageFullPath) else {
-            return
-        }
        
-    
-        marvelImageView.kf.setImage(with: url)
-        }
     }
+    
     
     func setupCell()   {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -48,4 +44,18 @@ class ImageTableViewCell: UITableViewCell {
         
         backgroundImageView.image = UIImage(named: "bg-cell-title")
     }
+    func displayName(charName: String) {
+        titleLabel.text = charName
+    }
+    
+    func displayImage(charImagePath: String) {
+        
+            guard let url = URL(string: charImagePath) else {
+                return
+            }
+            marvelImageView.kf.setImage(with: url)
+        
+    }
+    
+    
 }

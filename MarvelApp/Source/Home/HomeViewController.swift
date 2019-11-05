@@ -9,13 +9,13 @@
 import UIKit
 import Alamofire
 
-class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDelegate , UITableViewDataSource{
+class HomeViewController:  BaseViewController, HomeViewProtocol{
   
-
+   
+    var presenter: HomePresenterProtocol!
     @IBOutlet weak var marvelTableView: UITableView!
-    fileprivate var presenter : HomePresenter?
-    var charList : [CharDetails]?
-    var charSearchList : [CharDetails]?
+   //  fileprivate var presenter : HomePresenter?
+    
     let charLimit = 20
     var charOffest = 0
     override func viewDidLoad() {
@@ -34,8 +34,8 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func setupPresenter()  {
-        presenter = HomePresenter(controller : self)
-        presenter?.fetchCharacters(limit: charLimit, offest: charOffest)
+        presenter = HomePresenter (view: self)
+        presenter.fetchCharacters(limit: charLimit, offest: 0)
     }
     func setupTableView(){
         marvelTableView.separatorStyle = .none
@@ -67,24 +67,48 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
         performSegue(withIdentifier: "searchSegue", sender: self)
     }
   
-
+    func handelGeneraicError(error: Error) {
+        handelGeneraicError(error: error)
+    }
+    
+    func fetchingDataSuccess() {
+        marvelTableView.reloadData()
+    }
+    func showIndicator() {
+        showLodingIndicator()
+    }
+    func dismissIndicator() {
+        dismissLodingIndicator()
+    }
+    
+    func navigateToCharachterDetailsScreen(charObj: CharDetails) {
+        if let charDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CharacterDetailsViewController") as? CharacterDetailsViewController {
+            navigationItem.backBarButtonItem?.tintColor = UIColor.white
+            charDetailsViewController.setCharacterObj(character: charObj )
+            if let navigator = navigationController {
+                navigator.pushViewController(charDetailsViewController, animated: true)
+                
+            }
+        }
+    }
+    
+}
+extension HomeViewController :  UISearchBarDelegate, UITableViewDelegate , UITableViewDataSource  {
+ 
     // MARK: tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-         return charList?.count ?? 0
-    
+        return  presenter?.getCharachterCount() ?? 0
+        
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = marvelTableView.dequeueCell() as ImageTableViewCell
-        
-        cell.configureCell(character : charList![indexPath.row] )
-        
+        presenter?.configureCell(cell: cell, for: indexPath.row)
         return cell
     }
     
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 200
@@ -92,41 +116,16 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-            navigateToCharacterDetailsViewController (character : (charList?[indexPath.row])!)
+        presenter?.didSelectRow(index: indexPath.row)
         
-        }
-       
+    }
     
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = charList!.count - 1
+        let lastElement = (presenter?.getCharachterCount())! - 1
         if indexPath.row == lastElement {
             presenter?.fetchCharacters(limit: charLimit + indexPath.row , offest: charOffest)
         }
     }
-   
-
-    // MARK: Update Model
-    func updateUiWithModel(charList : [CharDetails]){
-       self.charList?.removeAll()
-        self.charList = charList
-        self.marvelTableView.reloadData()
-    }
-    func updateUiWithSearchModel (charList : [CharDetails]){
-        self.charSearchList?.removeAll()
-        self.charSearchList = charList
-        self.marvelTableView.reloadData()
-    }
     
-    func  navigateToCharacterDetailsViewController (character : CharDetails){
-        
-        if let charDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CharacterDetailsViewController") as? CharacterDetailsViewController {
-             navigationItem.backBarButtonItem?.tintColor = UIColor.white
-            charDetailsViewController.setCharacterObj(character: character )
-            if let navigator = navigationController {
-                navigator.pushViewController(charDetailsViewController, animated: true)
-               
-            }
-        }
-    }
 }

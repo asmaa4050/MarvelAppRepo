@@ -12,7 +12,7 @@ class CharacterDetailsTableViewCell: UITableViewCell {
   
 
     @IBOutlet var detailsCollectionView: UICollectionView!
-    fileprivate var charDetailsList : [ChardetailsUiModel] = []
+  //   fileprivate var charDetailsList : [ChardetailsUiModel] = []
     @IBOutlet var comicsLabel: UILabel!
     
     @IBOutlet var collectionViewHightConstraint: NSLayoutConstraint!
@@ -20,7 +20,6 @@ class CharacterDetailsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-       
        
     }
     
@@ -30,16 +29,12 @@ class CharacterDetailsTableViewCell: UITableViewCell {
         self.detailsCollectionView.register(UINib.init(nibName: "ComicCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifire")
     }
     
-    
-  
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         detailsCollectionView.delegate = dataSourceDelegate
         detailsCollectionView.dataSource = dataSourceDelegate
         detailsCollectionView.tag = row
         detailsCollectionView.reloadData()
-       
-     
-       
+    
     }
 }
     

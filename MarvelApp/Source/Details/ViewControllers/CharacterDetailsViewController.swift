@@ -8,17 +8,13 @@
 
 import UIKit
 
-class CharacterDetailsViewController: BaseViewController , UITableViewDelegate , UITableViewDataSource{
-    
+class CharacterDetailsViewController: BaseViewController ,CharacterDetailsViewProtocol {
+    var presenter: CharDetailsPresenterProtocol!
     @IBOutlet var CharDetailsTabelView: UITableView!
     @IBOutlet var contentView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     fileprivate var character : CharDetails?
-    fileprivate var charDetailsList : [ChardetailsUiModel] = []
-    fileprivate var presenter : CharacterDetailsPresenter?
-    fileprivate var headersLabelsDic =  [Int : String]()
-     var charDetailsDic = [Int: [ChardetailsUiModel]]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,44 +59,7 @@ class CharacterDetailsViewController: BaseViewController , UITableViewDelegate ,
         )
         
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return charDetailsDic.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = CharDetailsTabelView.dequeueCell() as CharacterDetailsTableViewCell
-           cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-            cell.comicsLabel.text = headersLabelsDic [indexPath.row]
-           cell.selectionStyle = .none
-          return cell
-    }
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
- 
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-        let  headerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell") as! CharacterHeaderTableViewCell
-    
-             headerCell.configureCell(character: character!)
-    
-        return headerCell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let  footerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "footerCell") as! CharacterDetailsTableViewFooter
-     
-        
-        return footerCell
-    }
-    
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
 //
     
     fileprivate func setTableContentInset(){
@@ -119,37 +78,76 @@ class CharacterDetailsViewController: BaseViewController , UITableViewDelegate ,
     }
     
     // MARK: Update Model
-    func updateUiWithModel(charDetailsDic : [Int: [ChardetailsUiModel]] , headerLabelDic : [Int : String]){
-        self.charDetailsDic = charDetailsDic
-        self.headersLabelsDic = headerLabelDic
+    func fetchingDataSuccess() {
         self.CharDetailsTabelView.reloadData()
     }
-
+    func showIndicator() {
+      showLodingIndicator()
+    }
+    
+    func dismissIndicator() {
+       dismissLodingIndicator()
+    }
+    
 }
 
+
 /// MARK: Collection view Delegate
-extension CharacterDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+extension CharacterDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout,UITableViewDelegate , UITableViewDataSource {
     
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter!.getCharDetailsDicCount()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let  cell = CharDetailsTabelView.dequeueCell() as CharacterDetailsTableViewCell
+        cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        presenter!.configureHeaderLabel(cell: cell, indexPath: indexPath.row)
+        
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let  headerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell") as! CharacterHeaderTableViewCell
+        
+        headerCell.configureCell(character: character!)
+        
+        return headerCell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let  footerCell = CharDetailsTabelView.dequeueReusableHeaderFooterView(withIdentifier: "footerCell") as! CharacterDetailsTableViewFooter
+        
+        
+        return footerCell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-      if let myarr = charDetailsDic[collectionView.tag]{
-              return myarr.count
-        }
-        else {
-            return 0
-        }
+        return presenter!.getCollectionviewItemsCount(collectionViewTag: collectionView.tag)
     
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionIdentifire",
                                                          for: indexPath) as? ComicCollectionViewCell {
-
-            charDetailsList = charDetailsDic[collectionView.tag]!
-            cell.configureCell(imagePath: (charDetailsList[indexPath.row].thumbnail.getImagePath()), name: charDetailsList[indexPath.row].title)
-                return cell
+            presenter!.configureCollectionViewCell(cell: cell, tag: collectionView.tag , indexPath: indexPath.row)
+            
+            return cell
             
         }
         
@@ -162,10 +160,9 @@ extension CharacterDetailsViewController : UICollectionViewDelegate , UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        charDetailsList = charDetailsDic[collectionView.tag]!
         
         if let imageSliderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageSliderViewController") as? ImageSliderViewController {
-            imageSliderViewController.setPhotosList(photosList: charDetailsList)
+            imageSliderViewController.setPhotosList(photosList: presenter!.getCharDetailsList(tag: collectionView.tag))
             navigationItem.backBarButtonItem?.tintColor = UIColor.white
             self.navigationController?.pushViewController(imageSliderViewController, animated: true)
         }

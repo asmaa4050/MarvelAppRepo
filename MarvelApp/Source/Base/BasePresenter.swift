@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import SwiftOverlays
 class BasePresenter {
-    let viewController : BaseViewController?
+    let viewController : UIViewController?
     
-    init(viewController : BaseViewController) {
+    init(viewController : UIViewController) {
         self.viewController = viewController
     }
     
     
-    func showLodingIndicator (){
+   func showLodingIndicator (){
         self.viewController!.showWaitOverlay()
     }
     func dismissLodingIndicator(){
@@ -25,7 +25,7 @@ class BasePresenter {
     }
     
     func handelGeneraicError(error : Error ){
-        viewController?.handelGenaricError(error: error)
+      //   viewController?.handelGenaricError(error: error)
        
         
     }
